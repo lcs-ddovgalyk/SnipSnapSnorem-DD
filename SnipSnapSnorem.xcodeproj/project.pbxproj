@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A23658DE2411E8AF004AE6E1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23658DD2411E8AF004AE6E1 /* main.swift */; };
+		A23658E72411EA68004AE6E1 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23658E62411EA68004AE6E1 /* Rank.swift */; };
+		A23658E92411EA88004AE6E1 /* Suit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23658E82411EA88004AE6E1 /* Suit.swift */; };
+		A23658EB2411EA97004AE6E1 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23658EA2411EA97004AE6E1 /* Card.swift */; };
+		A23658ED2411EAA8004AE6E1 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23658EC2411EAA8004AE6E1 /* Deck.swift */; };
+		A23658EF2411EABB004AE6E1 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23658EE2411EABB004AE6E1 /* Hand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,11 @@
 /* Begin PBXFileReference section */
 		A23658DA2411E8AF004AE6E1 /* SnipSnapSnorem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnipSnapSnorem; sourceTree = BUILT_PRODUCTS_DIR; };
 		A23658DD2411E8AF004AE6E1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A23658E62411EA68004AE6E1 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
+		A23658E82411EA88004AE6E1 /* Suit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suit.swift; sourceTree = "<group>"; };
+		A23658EA2411EA97004AE6E1 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		A23658EC2411EAA8004AE6E1 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		A23658EE2411EABB004AE6E1 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				A23658DD2411E8AF004AE6E1 /* main.swift */,
+				A23658E62411EA68004AE6E1 /* Rank.swift */,
+				A23658E82411EA88004AE6E1 /* Suit.swift */,
+				A23658EA2411EA97004AE6E1 /* Card.swift */,
+				A23658EC2411EAA8004AE6E1 /* Deck.swift */,
+				A23658EE2411EABB004AE6E1 /* Hand.swift */,
 			);
 			path = SnipSnapSnorem;
 			sourceTree = "<group>";
@@ -121,6 +136,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A23658DE2411E8AF004AE6E1 /* main.swift in Sources */,
+				A23658E92411EA88004AE6E1 /* Suit.swift in Sources */,
+				A23658EF2411EABB004AE6E1 /* Hand.swift in Sources */,
+				A23658ED2411EAA8004AE6E1 /* Deck.swift in Sources */,
+				A23658E72411EA68004AE6E1 /* Rank.swift in Sources */,
+				A23658EB2411EA97004AE6E1 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
