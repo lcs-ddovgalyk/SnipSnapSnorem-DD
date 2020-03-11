@@ -21,6 +21,12 @@ class SnipSnapSnorem {
     // The pile where each player shows their cards
     var middlePile : Hand
     
+    // Offence is the person who plays their card first
+    var offence: Hand
+    
+    // Defence is the person who has to play a matching card
+    var defence: Hand
+    
     // Initializers
     init () {
         // Initialize the initial deck (deck that gets shuffled and dealt out to the players)
@@ -46,5 +52,10 @@ class SnipSnapSnorem {
         
         // Middle pile has no cards to start with
         middlePile.cards = []
+        
+        // Player is on offence at start (plays first)
+        offence = player
+        defence = computer
     }
+    
 }
