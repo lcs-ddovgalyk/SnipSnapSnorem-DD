@@ -57,5 +57,22 @@ class SnipSnapSnorem {
         offence = player
         defence = computer
     }
+
+    private func play() {
+        // Player plays their top card
+        middlePile.cards.append(player.dealTopCard()!)
+        
+        // Makes the round card value
+        let roundCard = middlePile.topCard?.rank
+        
+        // Search the hand of the player on offence
+        for a in 1...offence.cards.count {
+            // If it finds a card of the same value as the one just played
+            if offence.cards[a].rank == roundCard {
+                // Play the card
+                middlePile.cards.append(offence.cards[a])
+            }
+        }
+    }
     
 }
