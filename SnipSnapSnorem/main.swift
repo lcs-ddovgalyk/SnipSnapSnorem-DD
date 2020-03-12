@@ -27,6 +27,9 @@ class SnipSnapSnorem {
     // Defence is the person who has to play a matching card
     var defence: Hand
     
+    // Determines if person on defence can respond to the player on offence
+    var canDefenceRespond: Bool
+    
     // Initializers
     init () {
         // Initialize the initial deck (deck that gets shuffled and dealt out to the players)
@@ -56,6 +59,8 @@ class SnipSnapSnorem {
         // Player is on offence at start (plays first)
         offence = player
         defence = computer
+        
+        canDefenceRespond = false
     }
 
     private func play() {
@@ -72,6 +77,29 @@ class SnipSnapSnorem {
                 // Play the card
                 middlePile.cards.append(offence.cards[a])
             }
+        }
+        
+        // If defence responded, swap who is playing first
+        if canDefenceRespond == true {
+            changeWhoIsOnOffence()
+        }
+        
+        
+    }
+    
+    // Change who is on offence and who is on defence
+    func changeWhoIsOnOffence() {
+        // If the player is on offence
+        if offence === player {
+            // Make computer offence and player defence
+            offence = computer
+            defence = player
+            
+        // If the computer is on offence
+        } else {
+            // Make player offence and computer defence
+            offence = player
+            defence = computer
         }
     }
     
