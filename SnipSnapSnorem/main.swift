@@ -78,6 +78,16 @@ class SnipSnapSnorem {
                 middlePile.cards.append(offence.cards[a])
             }
         }
+        //check if the defence has the same card that was placed
+        for b in 1...defence.cards.count {
+            //if it finds a card of the same value place it in the middle pile
+            if defence.cards[b].rank == roundCard {
+                middlePile.cards.append(defence.cards[b])
+                //set the defence to true
+                canDefenceRespond = true
+                
+            }
+        }
         
         // If defence responded, swap who is playing first
         if canDefenceRespond == true {
