@@ -61,7 +61,7 @@ struct Deck {
         
         // Track cards left to deal
         var cardsLeftToDeal = cardsToDeal
-        
+        print(cardsLeftToDeal) // prints how many cards are left to deal
         // Make an array that will be passed back out of the function
         var cardsDealt : [Card] = []
         
