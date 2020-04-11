@@ -33,13 +33,14 @@ class SnipSnapSnorem {
     var handsWonComputer = 0
     var handsWonPlayer = 0
     var totalHandsPlayed = 0
-    
+    var playInMotion: Bool
+
     
     // Initializers
     init () {
         // Initialize the initial deck (deck that gets shuffled and dealt out to the players)
         deck = Deck()
-        
+
         // Initialize the player hands
         player = Hand(description: "Player's hand")
         computer = Hand(description: "Computer's hand")
@@ -66,58 +67,65 @@ class SnipSnapSnorem {
         defence = computer
         
         canDefenceRespond = false
-       
+        playInMotion = true
+        play()
+        
         
     }
 
     func play() {
-        //keeps track of total hands played
-        totalHandsPlayed += 1
-        // Player plays their top card
-        middlePile.cards.append(offence.dealTopCard()!)
-        
-        // Makes the round card value
-        let roundCard = middlePile.topCard?.rank
-        
-        // Search the hand of the player on offence
-        for a in 1...offence.cards.count {
-            // If it finds a card of the same value as the one just played
-            if offence.cards[a].rank == roundCard {
-                // Play the card
-                middlePile.cards.append(offence.cards[a])
-                //prints how many cards the computer or the player has
-                if offence === player {
-                    print("Player has \(offence.cards.count) cards left")
-                } else if offence === computer {
-                    print("Computer has \(offence.cards.count) cards left")
-                }
-            }
-        }
-        //check if the defence has the same card that was placed
-        for b in 1...defence.cards.count {
-            //if it finds a card of the same value place it in the middle pile
-            if defence.cards[b].rank == roundCard {
-                middlePile.cards.append(defence.cards[b])
-                //set the defence to true
-                //if defence doesn't find the same value, the positions stay the same
-                canDefenceRespond = true
-                //prints how many cards the computer or the player has
-                if defence === player {
-                } else if defence === computer {
-                    print("Computer has \(defence.cards.count) cards left")
-                }
+        if playInMotion == true {
+            //keeps track of total hands played
+            totalHandsPlayed += 1
+            // Player plays their top card
+            middlePile.cards.append(offence.dealTopCard()!)
+            
+            // Makes the round card value
+            let roundCard = middlePile.topCard?.rank
+            
+            // Search the hand of the player on offence
+            for a in 1...offence.cards.count {
                 
+                // If it finds a card of the same value as the one just played
+                if offence.cards[a].rank == roundCard {
+                    // Play the card
+                    middlePile.cards.append(offence.cards[a])
+                    //prints how many cards the computer or the player has
+                    if offence === player {
+                        print("Player has \(offence.cards.count) cards left")
+                    } else if offence === computer {
+                        print("Computer has \(offence.cards.count) cards left")
+                    }
+                }
             }
+            //check if the defence has the same card that was placed
+            for b in 1...defence.cards.count {
+                //if it finds a card of the same value place it in the middle pile
+                if defence.cards[b].rank == roundCard {
+                    middlePile.cards.append(defence.cards[b])
+                    //set the defence to true
+                    //if defence doesn't find the same value, the positions stay the same
+                    canDefenceRespond = true
+                    //prints how many cards the computer or the player has
+                    if defence === player {
+                    } else if defence === computer {
+                        print("Computer has \(defence.cards.count) cards left")
+                    }
+                    
+                }
+            }
+            
+            // If defence responded, swap who is playing first
+            if canDefenceRespond == true {
+                changeWhoIsOnOffence()
+            }
+            end()
         }
         
-        // If defence responded, swap who is playing first
-        if canDefenceRespond == true {
-            changeWhoIsOnOffence()
-        }
         
         
     }
-    
+  
     
     // Change who is on offence and who is on defence
     func changeWhoIsOnOffence() {
@@ -149,10 +157,12 @@ class SnipSnapSnorem {
     }
     
     func end(){
-        if offence.cards.count == 0 && defence.cards.count == 0 {
+        if player.cards.count == 1 && computer.cards.count == 1 {
             print("")
+            playInMotion = false
         }
     }
+    
     
 }
 
