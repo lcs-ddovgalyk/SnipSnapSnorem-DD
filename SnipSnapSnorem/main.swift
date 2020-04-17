@@ -85,6 +85,7 @@ class SnipSnapSnorem {
             
             // Search the hand of the player on offence
             for a in 1...offence.cards.count {
+             
                 
                 // If it finds a card of the same value as the one just played
                 if offence.cards[a].rank == roundCard {
@@ -96,10 +97,15 @@ class SnipSnapSnorem {
                     } else if offence === computer {
                         print("Computer has \(offence.cards.count) cards left")
                     }
+                    
+                    
                 }
+            
+                
             }
             //check if the defence has the same card that was placed
             for b in 1...defence.cards.count {
+                
                 //if it finds a card of the same value place it in the middle pile
                 if defence.cards[b].rank == roundCard {
                     middlePile.cards.append(defence.cards[b])
@@ -113,6 +119,7 @@ class SnipSnapSnorem {
                     }
                     
                 }
+            
             }
             
             // If defence responded, swap who is playing first
@@ -157,7 +164,7 @@ class SnipSnapSnorem {
     }
     
     func end(){
-        if player.cards.count == 1 && computer.cards.count == 1 {
+        if offence.cards.count == 1 && defence.cards.count == 1 {
             print("")
             playInMotion = false
         }
