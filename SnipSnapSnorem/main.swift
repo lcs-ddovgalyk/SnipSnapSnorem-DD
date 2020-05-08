@@ -87,7 +87,6 @@ class SnipSnapSnorem {
                     computer.cards[j] = offence.cards[j+1] //replace left with right
                     computer.cards[j+1] = temporaryValue //replace right with left
                 }
-               
             }
 
         }
@@ -116,6 +115,7 @@ class SnipSnapSnorem {
             
             //keeps track of total hands played
             totalHandsPlayed += 1
+            
             // Player plays their top card
             middlePile.cards.append(offence.dealTopCard()!)
             
@@ -126,15 +126,25 @@ class SnipSnapSnorem {
                 if offence.cards[0].rank == roundCard {
                     middlePile.cards.append(offence.cards[0])
                 }
-                
+            }
+            if offence === computer {
+                print("Computer has \(computer.cards.count) cards left")
+            } else if offence === player {
+                print("Player has \(player.cards.count) cards left")
+
             }
             if defence.cards[0].rank == roundCard  {
-
                 for _ in 0...4 {
                     if defence.cards[0].rank == roundCard  {
                         middlePile.cards.append(defence.cards[0])
                     }
                 }
+            if defence === computer {
+                print("Computer has \(computer.cards.count) cards left")
+            } else if defence === player {
+                print("Player has \(player.cards.count) cards left")
+
+            }
                 canDefenceRespond = true
                 
             }
@@ -185,7 +195,7 @@ class SnipSnapSnorem {
             if canDefenceRespond == true {
                 changeWhoIsOnOffence()
             }
-        
+            print(totalHandsPlayed)
             end()
             
         }
