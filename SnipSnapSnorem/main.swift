@@ -74,7 +74,45 @@ class SnipSnapSnorem {
     }
 
     func play() {
-        if playInMotion == true {
+        for i in 0..<computer.cards.count - 1 {
+            //one pass through the array to float the highest number to the end
+
+            for j in 0..<computer.cards.count - 1 {
+            
+                //compare the left value to the right value
+                if computer.cards[j].rank.rawValue > computer.cards[j+1].rank.rawValue {
+                    //swap the values when left value is more than right value
+                    let temporaryValue = computer.cards[j]//set aside the left value
+
+                    computer.cards[j] = offence.cards[j+1] //replace left with right
+                    computer.cards[j+1] = temporaryValue //replace right with left
+                }
+               
+            }
+
+        }
+        //bubble sorting algorith to sort players cards.
+        
+        for i in 0..<player.cards.count - 1 {
+            //one pass through the array to float the highest number to the end
+
+            for j in 0..<player.cards.count - 1 {
+            
+                //compare the left value to the right value
+                if player.cards[j].rank.rawValue > player.cards[j+1].rank.rawValue {
+                    //swap the values when left value is more than right value
+                    let temporaryValue = player.cards[j]//set aside the left value
+
+                    player.cards[j] = player.cards[j+1] //replace left with right
+                    player.cards[j+1] = temporaryValue //replace right with left
+                }
+               
+            }
+
+        }
+        
+        
+        while playInMotion == true {
             
             //keeps track of total hands played
             totalHandsPlayed += 1
@@ -84,42 +122,24 @@ class SnipSnapSnorem {
             // Makes the round card value
             let roundCard = middlePile.topCard?.rank
             //bubble sorting algoritm to sort computers cards
-            for i in 0..<computer.cards.count - 1 {
-                //one pass through the array to float the highest number to the end
-
-                for j in 0..<computer.cards.count - 1 {
-                
-                    //compare the left value to the right value
-                    if computer.cards[j].rank.rawValue > computer.cards[j+1].rank.rawValue {
-                        //swap the values when left value is more than right value
-                        let temporaryValue = computer.cards[j]//set aside the left value
-
-                        computer.cards[j] = offence.cards[j+1] //replace left with right
-                        computer.cards[j+1] = temporaryValue //replace right with left
-                    }
-                   
+            for _ in 0...4 {
+                if offence.cards[0].rank == roundCard {
+                    middlePile.cards.append(offence.cards[0])
                 }
-
+                
             }
-            //bubble sorting algorith to sort players cards.
+            if defence.cards[0].rank == roundCard  {
+
+                for _ in 0...4 {
+                    if defence.cards[0].rank == roundCard  {
+                        middlePile.cards.append(defence.cards[0])
+                    }
+                }
+                canDefenceRespond = true
+                
+            }
             
-            for i in 0..<player.cards.count - 1 {
-                //one pass through the array to float the highest number to the end
-
-                for j in 0..<player.cards.count - 1 {
-                
-                    //compare the left value to the right value
-                    if player.cards[j].rank.rawValue > player.cards[j+1].rank.rawValue {
-                        //swap the values when left value is more than right value
-                        let temporaryValue = player.cards[j]//set aside the left value
-
-                        player.cards[j] = player.cards[j+1] //replace left with right
-                        player.cards[j+1] = temporaryValue //replace right with left
-                    }
-                   
-                }
-
-            }
+            
             // Search the hand of the player on offence
 //            for a in 0..<offence.cards.count - 1{
 //
@@ -200,6 +220,7 @@ class SnipSnapSnorem {
             print("The player won \(handsWonPlayer) hands")
             
         }
+        canDefenceRespond = false
         
         
     }
