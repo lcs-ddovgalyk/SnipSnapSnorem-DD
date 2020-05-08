@@ -74,7 +74,8 @@ class SnipSnapSnorem {
     }
 
     func play() {
-        if playInMotion == true {
+        print("HEyyyyyy: \(offence.cards.count)")
+        while playInMotion == true {
             //keeps track of total hands played
             totalHandsPlayed += 1
             // Player plays their top card
@@ -84,7 +85,7 @@ class SnipSnapSnorem {
             let roundCard = middlePile.topCard?.rank
             
             // Search the hand of the player on offence
-            for a in 1...offence.cards.count {
+            for a in 1..<offence.cards.count - 1{
              
                 
                 // If it finds a card of the same value as the one just played
@@ -93,6 +94,7 @@ class SnipSnapSnorem {
                     middlePile.cards.append(offence.cards[a])
                     //prints how many cards the computer or the player has
                     if offence === player {
+                        
                         print("Player has \(offence.cards.count) cards left")
                     } else if offence === computer {
                         print("Computer has \(offence.cards.count) cards left")
@@ -104,7 +106,7 @@ class SnipSnapSnorem {
                 
             }
             //check if the defence has the same card that was placed
-            for b in 1...defence.cards.count {
+            for b in 1..<defence.cards.count - 1{
                 
                 //if it finds a card of the same value place it in the middle pile
                 if defence.cards[b].rank == roundCard {
@@ -127,6 +129,7 @@ class SnipSnapSnorem {
                 changeWhoIsOnOffence()
             }
             end()
+            
         }
         
         
@@ -164,7 +167,7 @@ class SnipSnapSnorem {
     }
     
     func end(){
-        if offence.cards.count == 1 && defence.cards.count == 1 {
+        if offence.cards.count == 1 || defence.cards.count == 1 {
             print("")
             playInMotion = false
         }
