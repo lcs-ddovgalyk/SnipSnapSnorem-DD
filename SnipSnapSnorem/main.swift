@@ -112,7 +112,8 @@ class SnipSnapSnorem {
         
         
         while playInMotion == true {
-            
+            //check the end of the game
+            end()
             //keeps track of total hands played
             totalHandsPlayed += 1
             
@@ -121,29 +122,41 @@ class SnipSnapSnorem {
             
             // Makes the round card value
             let roundCard = middlePile.topCard?.rank
-            //bubble sorting algoritm to sort computers cards
+            //play the hand
             for _ in 0...4 {
+                //if the offence has the card that is currently at play then place the card
                 if offence.cards[0].rank == roundCard {
-                    middlePile.cards.append(offence.cards[0])
-                    offence.cards.remove(at: 0)
+                    //check if they still have cards to append
+                    if offence.cards.count > 1 {
+                        middlePile.cards.append(offence.cards[0])
+                        offence.cards.remove(at: 0)
+                    }
+                    
                 }
             }
+            //statistics
             if offence === computer {
                 print("Computer has \(computer.cards.count) cards left")
             } else if offence === player {
                 print("Player has \(player.cards.count) cards left")
 
             }
+            //defence checks if they have the same value
+            //if they do they place the card
             if defence.cards[0].rank == roundCard  {
                 for _ in 0...4 {
                     if defence.cards[0].rank == roundCard  {
-                        middlePile.cards.append(defence.cards[0])
-                        defence.cards.remove(at: 0)
+                        if defence.cards.count > 1 {
 
+                            middlePile.cards.append(defence.cards[0])
+                            defence.cards.remove(at: 0)
+                        }
                     }
                 }
+                //change who is offence and who is defence
                 canDefenceRespond = true
             }
+            //statistics
             if defence === computer {
                 print("Computer has \(computer.cards.count) cards left")
             } else if defence === player {
@@ -151,55 +164,15 @@ class SnipSnapSnorem {
 
             }
             
-            
-            // Search the hand of the player on offence
-//            for a in 0..<offence.cards.count - 1{
-//
-//
-//                // If it finds a card of the same value as the one just played
-//                if offence.cards[a].rank == roundCard {
-//                    // Play the card
-//                    middlePile.cards.append(offence.cards[a])
-//                    //prints how many cards the computer or the player has
-//                    if player === offence {
-//
-//                        print("Player has \(offence.cards.count) cards left")
-//                    } else if offence === computer {
-//                        print("Computer has \(offence.cards.count) cards left")
-//                    }
-//
-//
-//                }
-//
-//
-//
-//            }
-//            //check if the defence has the same card that was placed
-//            for b in 1..<defence.cards.count - 1{
-//
-//                //if it finds a card of the same value place it in the middle pile
-//                if defence.cards[b].rank == roundCard {
-//                    middlePile.cards.append(defence.cards[b])
-//                    //set the defence to true
-//                    //if defence doesn't find the same value, the positions stay the same
-//                    canDefenceRespond = true
-//                    //prints how many cards the computer or the player has
-//                    if defence === player {
-//                    } else if defence === computer {
-//                        print("Computer has \(defence.cards.count) cards left")
-//                    }
-//
-//                }
-//
-//            }
-            
+           
             // If defence responded, swap who is playing first
             if canDefenceRespond == true {
                 changeWhoIsOnOffence()
-                canDefenceRespond = false
             }
             print("Total hands played \(totalHandsPlayed)")
+            //check the end
             end()
+            //clear the middle pile
             middlePile.cards.removeAll()
             
             
@@ -225,7 +198,7 @@ class SnipSnapSnorem {
             
             
         // If the computer is on offence
-        } else {
+        } else if player === defence {
             
             // Make player offence and computer defence
             offence = player
@@ -237,13 +210,25 @@ class SnipSnapSnorem {
             
         }
         
+        //switch the statement back to false
+        canDefenceRespond = false
         
     }
     
     func end(){
-        if offence.cards.count == 1 || defence.cards.count == 1 {
-            print("a")
+        if computer.cards.count <= 1 || player.cards.count <= 1 {
+            
             playInMotion = false
+            //if computer has less cards it won
+            if computer.cards.count <= 1 {
+                print("The computer has won the game")
+                //if the player has less cards they won
+            } else if player.cards.count <= 1 {
+                print("The player has won the game")
+
+            } else {
+                print("It's a tie")
+            }
         }
     }
     
