@@ -74,9 +74,10 @@ class SnipSnapSnorem {
     }
 
     func play() {
+        
+
         for i in 0..<computer.cards.count - 1 {
             //one pass through the array to float the highest number to the end
-
             for j in 0..<computer.cards.count - 1 {
             
                 //compare the left value to the right value
@@ -84,7 +85,7 @@ class SnipSnapSnorem {
                     //swap the values when left value is more than right value
                     let temporaryValue = computer.cards[j]//set aside the left value
 
-                    computer.cards[j] = offence.cards[j+1] //replace left with right
+                    computer.cards[j] = computer.cards[j+1] //replace left with right
                     computer.cards[j+1] = temporaryValue //replace right with left
                 }
             }
@@ -105,7 +106,6 @@ class SnipSnapSnorem {
                     player.cards[j] = player.cards[j+1] //replace left with right
                     player.cards[j+1] = temporaryValue //replace right with left
                 }
-               
             }
 
         }
@@ -125,6 +125,7 @@ class SnipSnapSnorem {
             for _ in 0...4 {
                 if offence.cards[0].rank == roundCard {
                     middlePile.cards.append(offence.cards[0])
+                    offence.cards.remove(at: 0)
                 }
             }
             if offence === computer {
@@ -137,16 +138,17 @@ class SnipSnapSnorem {
                 for _ in 0...4 {
                     if defence.cards[0].rank == roundCard  {
                         middlePile.cards.append(defence.cards[0])
+                        defence.cards.remove(at: 0)
+
                     }
                 }
+                canDefenceRespond = true
+            }
             if defence === computer {
                 print("Computer has \(computer.cards.count) cards left")
             } else if defence === player {
                 print("Player has \(player.cards.count) cards left")
 
-            }
-                canDefenceRespond = true
-                
             }
             
             
@@ -194,9 +196,13 @@ class SnipSnapSnorem {
             // If defence responded, swap who is playing first
             if canDefenceRespond == true {
                 changeWhoIsOnOffence()
+                canDefenceRespond = false
             }
-            print(totalHandsPlayed)
+            print("Total hands played \(totalHandsPlayed)")
             end()
+            middlePile.cards.removeAll()
+            
+            
             
         }
         
@@ -230,7 +236,6 @@ class SnipSnapSnorem {
             print("The player won \(handsWonPlayer) hands")
             
         }
-        canDefenceRespond = false
         
         
     }
