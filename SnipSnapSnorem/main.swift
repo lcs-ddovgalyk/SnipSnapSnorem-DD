@@ -2,8 +2,8 @@
 //  main.swift
 //  SnipSnapSnorem
 //
-//  Created by Peralta, Joven on 2020-03-05.
-//  Copyright © 2020 Peralta, Joven. All rights reserved.
+//  Created by Dovgalyk, Dima on 2020-03-05.
+//  Copyright © 2020 Dovgalyk, Dima. All rights reserved.
 //
 
 import Foundation
@@ -75,7 +75,7 @@ class SnipSnapSnorem {
 
     func play() {
         
-
+        //bubble search algorithm was provided by Mr. Gordon during class time
         for i in 0..<computer.cards.count - 1 {
             //one pass through the array to float the highest number to the end
             for j in 0..<computer.cards.count - 1 {
@@ -136,9 +136,10 @@ class SnipSnapSnorem {
             }
             //statistics
             if offence === computer {
-                print("Computer has \(computer.cards.count) cards left")
+                
+                print("📕: Computer has \(computer.cards.count) cards left")
             } else if offence === player {
-                print("Player has \(player.cards.count) cards left")
+                print("📗: Player has \(player.cards.count) cards left")
 
             }
             //defence checks if they have the same value
@@ -158,9 +159,9 @@ class SnipSnapSnorem {
             }
             //statistics
             if defence === computer {
-                print("Computer has \(computer.cards.count) cards left")
+                print("📕: Computer has \(computer.cards.count) cards left")
             } else if defence === player {
-                print("Player has \(player.cards.count) cards left")
+                print("📗: Player has \(player.cards.count) cards left")
 
             }
             
@@ -168,8 +169,17 @@ class SnipSnapSnorem {
             // If defence responded, swap who is playing first
             if canDefenceRespond == true {
                 changeWhoIsOnOffence()
+            } else {
+                if offence === computer {
+                    handsWonComputer += 1
+                    print("📕: The computer won \(handsWonComputer) hands")
+                } else if offence === player {
+                    handsWonPlayer += 1
+                    print("📗: The player won \(handsWonPlayer) hands")
+                }
             }
-            print("Total hands played \(totalHandsPlayed)")
+            print("📓: Total hands played \(totalHandsPlayed)")
+            print("📓:")
             //check the end
             end()
             //clear the middle pile
@@ -185,6 +195,7 @@ class SnipSnapSnorem {
   
     
     // Change who is on offence and who is on defence
+    
     func changeWhoIsOnOffence() {
         // If the player is on offence
         if player === offence {
@@ -194,24 +205,24 @@ class SnipSnapSnorem {
             //if the player goes in to defence, it means that the computer has won
             
             handsWonComputer += 1
-            print("The computer won \(handsWonComputer) hands")
+            print("📕: The computer won \(handsWonComputer) hands") //*modified*
             
             
         // If the computer is on offence
-        } else if player === defence {
+        } else if player === defence { 
             
             // Make player offence and computer defence
             offence = player
             defence = computer
             //if the computer switches to defence, it mens that the player has won
             
-            handsWonPlayer += 1
-            print("The player won \(handsWonPlayer) hands")
+            handsWonPlayer += 1 //*modified*
+            print("📗: The player won \(handsWonPlayer) hands") //*modified*
             
         }
         
         //switch the statement back to false
-        canDefenceRespond = false
+        canDefenceRespond = false //*modified*
         
     }
     
@@ -221,13 +232,13 @@ class SnipSnapSnorem {
             playInMotion = false
             //if computer has less cards it won
             if computer.cards.count <= 1 {
-                print("The computer has won the game")
+                print("📕: The computer has won the game")
                 //if the player has less cards they won
             } else if player.cards.count <= 1 {
-                print("The player has won the game")
+                print("📗: The player has won the game")
 
             } else {
-                print("It's a tie")
+                print("📓: It's a tie")
             }
         }
     }
