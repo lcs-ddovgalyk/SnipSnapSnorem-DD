@@ -10,6 +10,7 @@ import Foundation
 
 
 class SnipSnapSnorem {
+    //the following set up was provided by Joven Peralta (until *end*)
     // Instance variables
     // The deck of cards
     var deck : Deck
@@ -34,7 +35,7 @@ class SnipSnapSnorem {
     var handsWonPlayer = 0
     var totalHandsPlayed = 0
     var playInMotion: Bool
-
+    // *end*
     
     // Initializers
     init () {
@@ -209,7 +210,7 @@ class SnipSnapSnorem {
             
             
         // If the computer is on offence
-        } else if player === defence { 
+        } else if player === defence {
             
             // Make player offence and computer defence
             offence = player
